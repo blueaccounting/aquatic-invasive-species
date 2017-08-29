@@ -61093,7 +61093,7 @@ IMDS.init = function () {
   IMDS.events.getSliderChange('funding-slider', 'funding', map, IMDS.app, points, turfLayerGroup);
 
   // Query min/max values for year data, then build slider
-  var query = "http://dmajka.cartodb.com/api/v2/sql?q=SELECT MIN(funding_year), MAX(funding_year) FROM imds_ais_projects" ;
+  var query = "https://dmajka.cartodb.com/api/v2/sql?q=SELECT MIN(funding_year), MAX(funding_year) FROM imds_ais_projects" ;
   $.getJSON(query, function(data) {
     var min = data.rows[0].min;
     var max = data.rows[0].max;
@@ -61563,7 +61563,7 @@ function buildFilterDropdowns (ractive, filterID) {
     ractive.set('appstate.filters.active.dataquery.'+filterID, filterInfo);
 
     // query for unique options, split by semicolon, add to array
-    var query = "http://dmajka.cartodb.com/api/v2/sql?q=SELECT DISTINCT "+ filterID + " FROM " + cartoDbTable  + " ORDER BY " + filterID + " ASC";
+    var query = "https://dmajka.cartodb.com/api/v2/sql?q=SELECT DISTINCT "+ filterID + " FROM " + cartoDbTable  + " ORDER BY " + filterID + " ASC";
 
     $.getJSON(query, function(data) {
 
@@ -61636,7 +61636,7 @@ function getThematicFilterChange (ractive) {
       ractive.set('appstate.filters.active.dataquery.'+filterID, filterInfo);
 
       // query for unique options, split by semicolon, add to array
-      var query = "http://dmajka.cartodb.com/api/v2/sql?q=SELECT DISTINCT "+ filterID + " FROM " + cartoDbTable  + " ORDER BY " + filterID + " ASC";
+      var query = "https://dmajka.cartodb.com/api/v2/sql?q=SELECT DISTINCT "+ filterID + " FROM " + cartoDbTable  + " ORDER BY " + filterID + " ASC";
 
       $.getJSON(query, function(data) {
 
@@ -61736,8 +61736,8 @@ function getSpatialExtentLayer (selectID, optionsID, ractive, map, spatialFilter
     ractive.set('appstate.filters.active.turf.filterLabel', placeholderName);
     ractive.set('appstate.filters.active.turf.fieldName', field);    
 
-    var query = "http://dmajka.cartodb.com/api/v2/sql?q=SELECT DISTINCT "+ field + " FROM " + cartoDbTable  + " ORDER BY " + field + " ASC";
-    var layerQuery = "http://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM " + cartoDbTable;
+    var query = "https://dmajka.cartodb.com/api/v2/sql?q=SELECT DISTINCT "+ field + " FROM " + cartoDbTable  + " ORDER BY " + field + " ASC";
+    var layerQuery = "https://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM " + cartoDbTable;
 
     $.getJSON(query, function(data) {
       var sel = document.getElementById(optionsID);
@@ -61872,7 +61872,7 @@ function updateMapFilter(ractive, mapDiv, markerGroup, turfLayerGroup) {
         singleFilters.push("'" + filterOptions[i] + "'");
       }
       stringJoin = singleFilters.join(',');
-      cartoDbQuery = "http://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM " + filterLayer + " WHERE " + fieldName + " IN ("+stringJoin+")";
+      cartoDbQuery = "https://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM " + filterLayer + " WHERE " + fieldName + " IN ("+stringJoin+")";
       return cartoDbQuery;        
     };   
 
