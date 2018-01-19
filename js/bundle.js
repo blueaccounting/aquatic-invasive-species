@@ -61093,7 +61093,7 @@ IMDS.init = function () {
   IMDS.events.getSliderChange('funding-slider', 'funding', map, IMDS.app, points, turfLayerGroup);
 
   // Query min/max values for year data, then build slider
-  var query = "https://dmajka.cartodb.com/api/v2/sql?q=SELECT MIN(funding_year), MAX(funding_year) FROM imds_ais_projects" ;
+  var query = "https://dmajka.cartodb.com/api/v2/sql?q=SELECT MIN(funding_year), MAX(funding_year) FROM ais_projects_jan182016" ;
   $.getJSON(query, function(data) {
     var min = data.rows[0].min;
     var max = data.rows[0].max;
@@ -61175,7 +61175,7 @@ IMDS.app.observe('appstate.filters.active.dataquery.*', function(n, o, k, proper
 
 
 },{"../ais/config.js":34,"../js/events.js":35,"../js/filter.js":36,"../js/graph.js":37,"../js/map.js":38,"bootstrap":1,"chartist":14,"director":15,"jquery":16,"lodash":17,"numeral":19,"paths-js/bar":20,"ractive":27,"ractive-transitions-fade":26,"select2":28,"turf-within":29}],34:[function(require,module,exports){
-var projectsURL = 'https://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM imds_ais_projects'; 
+var projectsURL = 'https://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM ais_projects_jan182016'; 
 
 // var inputData = {
 //   projects: {
@@ -61191,7 +61191,7 @@ var projectsURL = 'https://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT
 // };
 
 var projects = {
-  url: 'https://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM imds_ais_projects',
+  url: 'https://dmajka.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM ais_projects_jan182016',
   addToMap: 'yes',
   id: 'imdsprojects'
 };
@@ -61554,7 +61554,7 @@ function buildFilterDropdowns (ractive, filterID) {
     var getFilterInfo = ractive.get('appstate.filters.variables.dataquery.'+filterID);
     var filterInfo = $.extend({}, getFilterInfo);
     //var completeMarkers = ractive.get('inputData.imdsprojects.markers.complete._geojson.features');
-    var cartoDbTable = 'imds_ais_projects';
+    var cartoDbTable = 'ais_projects_jan182016';
     var uniqueArray;
     // console.log(filterInfo);
     // console.log(filterID);
@@ -61629,7 +61629,7 @@ function getThematicFilterChange (ractive) {
       var getFilterInfo = ractive.get('appstate.filters.variables.dataquery.'+filterID);
       var filterInfo = $.extend({}, getFilterInfo);
       //var completeMarkers = ractive.get('inputData.imdsprojects.markers.complete._geojson.features');
-      var cartoDbTable = 'imds_ais_projects';
+      var cartoDbTable = 'ais_projects_jan182016';
       var uniqueArray;
 
       // by setting selected filter into ractive, it's automatically rendered into the filter interface
